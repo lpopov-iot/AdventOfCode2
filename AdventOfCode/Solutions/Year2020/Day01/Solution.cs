@@ -1,26 +1,25 @@
 using System;
 using System.Collections.Generic;
-using System.Text;
 
 namespace AdventOfCode.Solutions.Year2020
 {
 
     class Day01 : ASolution
     {
-
+        
+        string[] _input;
+        
         public Day01() : base(01, 2020, "")
         {
-            
+            _input = Input.Split("\n");
         }
 
         protected override string SolvePartOne()
         {
             var target = 2020;
             var seen = new HashSet<int>();
-
-            var nums = Input.Split("\n");
             
-            foreach (var numStr in nums)
+            foreach (var numStr in _input)
             {
                 if (Int32.TryParse(numStr, out var num))
                 {
@@ -44,10 +43,8 @@ namespace AdventOfCode.Solutions.Year2020
         protected override string SolvePartTwo()
         {
             var target = 2020;
-
-            var arr = Input.Split("\n");
             
-            var input =  Array.ConvertAll(arr, int.Parse);
+            var input =  Array.ConvertAll(_input, int.Parse);
             Array.Sort(input);
             
             for (var i = 0; i < input.Length - 1; i++)

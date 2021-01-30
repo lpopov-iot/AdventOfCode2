@@ -47,12 +47,14 @@ namespace AdventOfCode.Solutions.Year2020
         {
             public Policy Policy;
             public string Password { get; init; }
+            
+            public char? ChallengeChar { get; init; }
 
             public bool EvaluatePasswordPart1()
             {
                 if (Policy != null && Password != null)
                 {
-                    var totalCharOccurences = Password.AllIndexesOf(Policy.ChallengeChar.ToString()).Count();
+                    var totalCharOccurences = Password.AllIndexesOf(ChallengeChar.ToString()).Count();
 
                     if (totalCharOccurences < Policy.LowerBound || totalCharOccurences > Policy.UpperBound)
                     {
@@ -71,7 +73,7 @@ namespace AdventOfCode.Solutions.Year2020
                     var lowerChar = Password[Policy.LowerBound - 1];
                     var upperChar = Password[Policy.UpperBound - 1];
 
-                    if (lowerChar == Policy.ChallengeChar ^ upperChar == Policy.ChallengeChar )
+                    if (lowerChar == ChallengeChar ^ upperChar == ChallengeChar )
                     {
                         return true;
                     }
@@ -85,7 +87,6 @@ namespace AdventOfCode.Solutions.Year2020
         
         record Policy
         {
-            public char? ChallengeChar { get; init; }
             public int LowerBound { get; init; }
             public int UpperBound { get; init; }
         }
@@ -102,9 +103,9 @@ namespace AdventOfCode.Solutions.Year2020
 
             return new Challenge()
             {
+                ChallengeChar = line[posColon - 1],
                 Policy = new Policy()
                 {
-                    ChallengeChar = line[posColon - 1],
                     LowerBound = Convert.ToInt32(bounds[0]),
                     UpperBound = Convert.ToInt32(bounds[1])
                 },

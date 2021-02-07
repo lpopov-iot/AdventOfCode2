@@ -33,7 +33,7 @@ namespace AdventOfCode.Solutions.Year2020
 
         private int BSPFind(int min, int max, char[] instruction)
         {
-            var mid = (min + max + 1) / 2;
+            var mid = (min + max) / 2;
 
             for (var i = 0; i < instruction.Length; i++)
             {
@@ -48,7 +48,7 @@ namespace AdventOfCode.Solutions.Year2020
                 }
             }
 
-            return mid - 1;
+            return mid + 1;
         }
 
         protected override string SolvePartTwo()
